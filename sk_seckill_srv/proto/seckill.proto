@@ -1,0 +1,20 @@
+syntax = "proto3";
+package seckill;
+
+message GeneralRequest{
+  string id = 1;
+}
+
+message GeneralResponse{
+  string code = 1;
+  string msg = 2;
+}
+
+message SeckillRequest{
+  string id = 1;
+  string email = 2;
+}
+
+service SeckillService{
+  rpc FrontSeckill(SeckillRequest) returns (GeneralResponse);
+}

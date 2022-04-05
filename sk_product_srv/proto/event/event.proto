@@ -1,0 +1,89 @@
+syntax = "proto3";
+package event_proto;
+
+//数据库表信息
+message EventInfo{
+  string id = 1;
+  string name = 2;
+  float eventPrice = 3;
+  int32 eventNum = 4;
+  string startTime = 5;
+  string endTime = 6;
+  string description = 7;
+  string productId = 8;
+}
+message EventDetailedInfo{
+  EventInfo eventInfo = 1;
+  string eventCreateTime = 2;
+  string productName = 3;
+}
+message ProductInfo{
+  string productId = 1;
+  string name = 2;
+  float price = 3;
+  int32 leftNum = 4;
+  string unit = 5;
+  string image = 6;
+  string description = 7;
+  string createTime = 8;
+}
+message FrontEventInfo{
+  EventDetailedInfo eventDetailedInfo = 1;
+  ProductInfo productInfo = 2;
+}
+
+message GeneralRequest{
+  string eventId = 1;
+}
+message GeneralResponse{
+  string code = 1;
+  string msg = 2;
+}
+
+message AddEventRequest{
+  EventInfo eventInfo = 1;
+}
+
+message GetEventListRequest{
+  int32 start = 1;
+  int32 amount = 2;
+}
+message GetEventListResponse{
+  GeneralResponse generalResponse = 1;
+  int32 total = 2;
+  repeated EventDetailedInfo eventList = 3;
+}
+
+message GetEventResponse{
+  GeneralResponse generalResponse = 1;
+  EventDetailedInfo eventDetailedInfo = 2;
+}
+
+message EditEventRequest{
+  EventInfo eventInfo = 1;
+}
+
+message GetFrontEventListRequest{
+  int32 start = 1;
+  int32 amount = 2;
+}
+message GetFrontEventListResponse{
+  GeneralResponse generalResponse = 1;
+  int32 total = 2;
+  repeated FrontEventInfo frontEventList = 3;
+}
+
+message GetFrontEventResponse{
+  GeneralResponse generalResponse = 1;
+  FrontEventInfo frontEventInfo = 2;
+}
+
+service EventService{
+  rpc AddEvent(AddEventRequest) returns (GeneralResponse);
+  rpc GetEventList(GetEventListRequest) returns (GetEventListResponse);
+  rpc GetEvent(GeneralRequest) returns (GetEventResponse);
+  rpc EditEvent(EditEventRequest) returns (GeneralResponse);
+  rpc DeleteEvent(GeneralRequest) returns (GeneralResponse);
+  rpc GetFrontEventList(GetFrontEventListRequest) returns (GetFrontEventListResponse);
+  rpc GetFrontEvent(GeneralRequest) returns (GetFrontEventResponse);
+}

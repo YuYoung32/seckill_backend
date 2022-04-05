@@ -1,0 +1,15 @@
+{
+  "database": {
+    "host": "yourhost",
+    "port": "3307",
+    "username": "root",
+    "password": "123456",
+    "db_name": "sk_db",
+    "max_idle_conns": 10,
+    "max_open_conns": 100
+  },
+  "logrus": {
+    "level": "debug",
+    "file_path": "log/run.log"
+  }
+}

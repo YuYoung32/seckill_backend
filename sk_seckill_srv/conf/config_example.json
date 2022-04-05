@@ -1,0 +1,31 @@
+{
+  "database": {
+    "host": "yourhost",
+    "port": "3307",
+    "username": "root",
+    "password": "123456",
+    "db_name": "yourdb",
+    "max_idle_conns": 10,
+    "max_open_conns": 1000
+  },
+  "logrus": {
+    "level": "debug",
+    "file_path": "log/run.log"
+  },
+  "rabbitmq": {
+    "host": "localhost",
+    "port": "5672",
+    "user": "guest",
+    "password": "guest",
+    "vhost": "/"
+  },
+  "redis": {
+    "network": "tcp",
+    "host": "yourhost",
+    "port": "6379",
+    "password": "yourpassword",
+    "max_idle": 100,
+    "max_active": 50,
+    "max_idle_timeout": 120
+  }
+}

@@ -1,0 +1,53 @@
+syntax = "proto3";
+package product_proto;
+
+message ProductInfo{
+  string productId = 1;
+  string name = 2;
+  float price = 3;
+  int32 leftNum = 4;
+  string unit = 5;
+  string image = 6;
+  string description = 7;
+  string createTime = 8;
+}
+
+message GeneralRequest{
+  string productId = 1;
+}
+message GeneralResponse{
+  string code = 1;
+  string msg = 2;
+}
+
+message AddProductRequest{
+  ProductInfo productInfo = 1;
+}
+
+message GetProductListRequest{
+  int32 start = 1;
+  int32 amount = 2;
+}
+message GetProductListResponse{
+  GeneralResponse generalResponse = 1;
+  int32 total = 2;
+  repeated ProductInfo productInfo = 3;
+}
+
+message GetProductResponse{
+  GeneralResponse generalResponse = 1;
+  ProductInfo productInfo = 2;
+}
+
+message EditProductRequest{
+  ProductInfo productInfo = 1;
+}
+
+service ProductService{
+  rpc AddProduct(AddProductRequest) returns (GeneralResponse);
+  rpc DeleteProduct(GeneralRequest) returns (GeneralResponse);
+  rpc GetProductList(GetProductListRequest) returns (GetProductListResponse);
+  rpc GetProduct(GeneralRequest) returns (GetProductResponse);
+  rpc GetSelectedProductList(GeneralRequest) returns (GetProductListResponse);
+  rpc EditProduct(EditProductRequest) returns (GeneralResponse);
+}

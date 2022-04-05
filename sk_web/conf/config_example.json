@@ -1,0 +1,22 @@
+{
+  "logrus": {
+    "level": "info",
+    "file_path": "log/run.log"
+  },
+  "rabbitmq": {
+    "host": "localhost",
+    "port": "5672",
+    "user": "guest",
+    "password": "guest",
+    "vhost": "/"
+  },
+  "redis": {
+    "network": "tcp",
+    "host": "yourhost",
+    "port": "6379",
+    "password": "yourpassword",
+    "max_idle": 100,
+    "max_active": 50,
+    "max_idle_timeout": 120
+  }
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+package yuyoung.srv.sk_user_srv;
+
+message BasicUserInfo{
+  string email = 2;
+  string password = 3;
+}
+message UserInfo{
+  BasicUserInfo basicInfo = 1;
+  string username = 2;
+  string description = 3;
+  string status = 4;
+  string createTime = 5;
+}
+
+//只需要基本信息时的请求与通用回复
+message GeneralRequest{
+  BasicUserInfo user = 1;
+}
+message GeneralResponse{
+  string code = 1;
+  string msg = 2;
+}
+
+message RegisterUserRequest{
+  UserInfo user = 1;
+  string code = 2;
+}
+
+message GetUserInfoRequest{
+  int32 start = 1;
+  int32 amount = 2;
+}
+message GetUserInfoResponse{
+  GeneralResponse general = 1;
+  repeated UserInfo user = 2;
+  int32 total = 3;
+}
+
+service UserService{
+  rpc Register(RegisterUserRequest) returns (GeneralResponse);
+  rpc Login(GeneralRequest) returns (GeneralResponse);
+  rpc AdminLogin(GeneralRequest) returns (GeneralResponse);
+  rpc SendEmail(GeneralRequest) returns (GeneralResponse);
+  rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse);
+}
